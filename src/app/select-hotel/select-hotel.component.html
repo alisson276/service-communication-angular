@@ -1,8 +1,7 @@
 <p>select-hotel works!</p>
 <div>
-  User has selected: {{hotelService.selectedHotel.Name}}
+  User has selected: {{userSelectedHotel.Name}}
 </div>
-<br>
-<div>
-  <button (click)="goToNext()">Go To Select Room Screen</button>
+<div *ngIf="userSelectedHotel.Name">
+  <p style="font-weight: bold;">Data Fetched. Waiting 5 seconds before going to the next page...</p>
 </div>
