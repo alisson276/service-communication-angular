@@ -18,7 +18,7 @@ export class HotelService {
   }
 
   setHotel(): Observable<HotelDto> {
-    return this.http.get<HotelDto>("https://alisson276.free.beeceptor.com/hotel/1")
+    return this.http.post<HotelDto>("https://dea8889.free.beeceptor.com/hotel", null)
     .pipe(map((data: HotelDto) => {
       this.selectedHotel.next(data)
       this.hotelEmmiter$.emit(data)

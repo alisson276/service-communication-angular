@@ -20,16 +20,6 @@ export class SelectHotelComponent implements OnInit {
   ngOnInit() {
     console.log("SelectHotelComponent::ngOnInit()")
 
-    this.hotel$ = this.hotelService.setHotel().subscribe(data => {
-      console.log(`setHotel() on SelectHotel: ${JSON.stringify(data)}`)
-      this.userSelectedHotel = data
-      setTimeout(() =>
-      {
-        this.goToNext()
-      },
-      5000);
-    })
-
     this.hotelService.hotelEmmiter$.pipe(take(1)).subscribe(data => {
       console.log(`hotelEmmiter$ on SelectHotel: ${JSON.stringify(data)}`)
     });
@@ -42,7 +32,16 @@ export class SelectHotelComponent implements OnInit {
 
   goToNext()
   {
-    this.router.navigate(['/select-room'])
+    this.hotel$ = this.hotelService.setHotel()
+    .subscribe(data => {
+      console.log(`setHotel() on SelectHotel: ${JSON.stringify(data)}`)
+      this.userSelectedHotel = data
+      setTimeout(() =>
+      {
+        this.router.navigate(['/select-room'])
+      },
+      5000);
+    })
   }
 
   ngOnDestroy() {
